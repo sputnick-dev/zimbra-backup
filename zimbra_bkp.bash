@@ -20,7 +20,7 @@ done
 /opt/zimbra/openldap/sbin/slapcat -F /opt/zimbra/data/ldap/config -b '' -l ./ldap.bak.$(date +%Y%m%d%H%M%S)
 
 # mysql -> http://wiki.zimbra.com/wiki/MySQL_Backup_and_Restore
-/opt/zimbra/mysql/bin/mysqldump --user=root --password="$mysql_root_pw" --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs |
+/opt/zimbra/mysql/bin/mysqldump --user=root --password="$mysql_root_pw" --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs --events |
 	gzip > $mysql_backup_path/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
 
 # clean
