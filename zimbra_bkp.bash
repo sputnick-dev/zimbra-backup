@@ -13,7 +13,7 @@ mkdir -p $zimbra_backup_path $mysql_backup_path
 
 # mails+metadatas+calendars+todos
 for account in $(su - zimbra -c 'zmprov -l getAllAccounts' | egrep -v '^spam|^ham|^virus-quarantine'); do
-    su - zimbra -c "zmmailbox -z -m $account getRestURL '//?fmt=tgz'" > $zimbra_backup_path/mails+cal+todos_${account}_$(date +%Y%m%d-%H%M).tgz
+    su - zimbra -c "zmmailbox -z -m $account getRestURL '//?fmt=tgz'" > $zimbra_backup_path/mails+cals+todos_${account}_$(date +%Y%m%d-%H%M).tgz
 done
 
 # ldap
