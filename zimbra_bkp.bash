@@ -2,6 +2,8 @@
 
 # 2014-03-19 22:25:26.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
 
+# In // of this script, a FS backup is recommended with rsync by example.
+
 mysql_root_pw=$(/opt/zimbra/bin/zmlocalconfig -s | awk '$1 == "mysql_root_password"{print $3}')
 
 mkdir -p /home/backup/zimbra
