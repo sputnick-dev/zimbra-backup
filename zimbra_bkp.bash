@@ -8,7 +8,7 @@ zimbra_backup_path=/home/backup/zimbra
 mysql_backup_path=/home/backup/bdd/mysql
 mysql_root_pw=$(/opt/zimbra/bin/zmlocalconfig -s | awk '$1 == "mysql_root_password"{print $3}')
 
-mkdir -p $zimbra_backup_path
+mkdir -p $zimbra_backup_path $mysql_backup_path
 
 # mails+metadatas+calendars+todos
 for account in $(su - zimbra -c 'zmprov -l getAllAccounts' | egrep -v '^spam|^ham|^virus-quarantine'); do
