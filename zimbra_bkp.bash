@@ -8,6 +8,7 @@ zimbra_backup_path=/home/backup/zimbra
 mysql_backup_path=/home/backup/bdd/mysql
 mysql_root_pw=$(/opt/zimbra/bin/zmlocalconfig -s | awk '$1 == "mysql_root_password"{print $3}')
 
+cd $zimbra_backup_path
 mkdir -p $zimbra_backup_path $mysql_backup_path
 
 # mails+metadatas+calendars+todos
@@ -16,8 +17,7 @@ for account in $(su - zimbra -c 'zmprov -l getAllAccounts' | egrep -v '^spam|^ha
 done
 
 # ldap
-su - zimbra -c "/opt/zimbra/libexec/zmslapcat /tmp/"
-\mv /tmp/ldap.bak.* $zimbra_backup_path
+su - zimbra -c "/opt/zimbra/libexec/zmslapcat $zimbra_backup_path"
 
 # mysql -> http://wiki.zimbra.com/wiki/MySQL_Backup_and_Restore
 /opt/zimbra/mysql/bin/mysqldump --user=root --password="$mysql_root_pw" --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs > $mysql_backup_path/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
