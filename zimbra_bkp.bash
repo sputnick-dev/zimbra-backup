@@ -18,7 +18,7 @@ su - zimbra -c "/opt/zimbra/libexec/zmslapcat /tmp/"
 \mv /tmp/ldap.bak.* /home/backup/zimbra
 
 # mysql -> http://wiki.zimbra.com/wiki/MySQL_Backup_and_Restore
-/opt/zimbra/mysql/bin/mysqldump --user=root --password=$(/opt/zimbra/bin/zmlocalconfig -s | awk '$1 == "mysql_root_password"{print $3}') --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs > /home/backup/bdd/mysql/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
+/opt/zimbra/mysql/bin/mysqldump --user=root --password=$mysql_root_pw --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs > /home/backup/bdd/mysql/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
 
 # clean
 find /home/backup/zimbra -type f -mtime +15 -delete 2>/dev/null
