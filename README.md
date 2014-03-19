@@ -1,4 +1,4 @@
 zimbra-backup
 =============
 
-zimbra ZCS backup script
+zimbra ZCS light backup script.
