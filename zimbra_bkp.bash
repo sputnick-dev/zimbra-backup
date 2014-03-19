@@ -20,7 +20,8 @@ done
 su - zimbra -c "/opt/zimbra/libexec/zmslapcat $zimbra_backup_path"
 
 # mysql -> http://wiki.zimbra.com/wiki/MySQL_Backup_and_Restore
-/opt/zimbra/mysql/bin/mysqldump --user=root --password="$mysql_root_pw" --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs > $mysql_backup_path/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
+/opt/zimbra/mysql/bin/mysqldump --user=root --password="$mysql_root_pw" --socket=/opt/zimbra/db/mysql.sock --all-databases --single-transaction --flush-logs |
+	gzip > $mysql_backup_path/zimbra_dump-$(date +%Y%m%d%H%M).sql.gz
 
 # clean
 find $zimbra_backup_path -type f -mtime +15 -delete 2>/dev/null
