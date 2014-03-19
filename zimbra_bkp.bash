@@ -2,6 +2,8 @@
 
 # 2014-03-19 22:25:26.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
 
+# Tested with Zimbra Release 8.0.6.GA.5922.UBUNTU12.64 UBUNTU12_64 FOSS edition
+
 # In // of this script, a FS backup is recommended with rsync by example.
 
 zimbra_backup_path=/home/backup/zimbra
